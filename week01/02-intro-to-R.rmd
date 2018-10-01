@@ -2,6 +2,65 @@
 
 This Rmarkdown script provides a description of some of the building blocks we will rely on throughout this course. If you're having trouble following the code below, make sure you read the required chapters in Wickham's *Advanced R*.
 
+### Using R as a calculator
+
+The most basic functionality of R is using it as a calculator
+
+```{r}
+10 / 2
+sqrt(100) + sqrt(9)
+exp(1)
+2^3
+```
+
+### Objects and operators
+
+What makes R very powerful is that you can store results as "objects"
+
+```{r}
+x <- 5
+y <- 10
+```
+
+If you look at the `Environment` panel in your RStudio session, you can see that these numbers are stored in memory.
+
+Then you can do operations with them, the same way you would do with numbers:
+
+```{r}
+x * y
+```
+
+You can also save combinations of objects as new objects
+
+```{r}
+z <- x * y
+```
+
+You can also modify existing objects.
+
+```{r}
+x <- x + 1
+```
+
+Note that we've used the `<-` sign to assign values to objects. That's the *assignment* operator. You can also use `=`, although `<-` is generally preferred. There's a more technical explanation for this preference, but another is that this way you avoid getting confused with `==`, which is used to compare objects:
+
+```{r}
+2 == 2
+c(1, 2, 3) == 2
+```
+
+`==` is a *logical operator*, meaning it outputs `TRUE` or `FALSE`. Other logical operators are:
+
+```{r}
+1 != 2 # not equal to
+2 < 2 # less than
+2 <= 2 # less than or equal to
+2 > 2 # greater than
+2 >= 2 # greater than or equal to
+(2 < 2) | (2 <= 2) # or
+(2 < 2) & (2 <= 2) # and
+```
+
 ### Data types
 
 R has many data types, but the most common ones we'll use are:
@@ -45,6 +104,23 @@ This is equivalent to just typing the name of the object in the console. (What's
 
 ```{r}
 x
+```
+
+
+You can find out the data type for each object in `R` using the function `class`, or functions that start with `is.` and then the data type:
+
+```{r}
+class("hello world!")
+is.numeric("hello world!")
+is.character("hello world")
+class(c(1, NA, 0))
+is.numeric(c(1, NA, 0))
+```
+
+Probably one of the most useful functions in R is `str`. It displays the internal structure of an object.
+
+```{r}
+str(as.factor(c("Blue", "Blue", "Red")))
 ```
 
 ### Data structures
@@ -137,7 +213,7 @@ list1
 or even vectors and data frames, or multiple data frames:
 
 ```{r}
-schools <- list(school_name = "UPF", students = students, 
+schools <- list(school_name = "LSE", students = students, 
                     faculty = data.frame(name = c("Kelly Jones", "Matt Smith"), 
                                          age = c(41, 55)))
 schools
